@@ -1,4 +1,17 @@
 ==================
+perbandingan string
+==================
+
+status = "open"
+
+---
+
+(query
+  (comparison
+    field: (identifier)
+    value: (string)))
+
+==================
 operator dan number
 ==================
 
