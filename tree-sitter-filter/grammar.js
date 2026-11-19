@@ -22,22 +22,22 @@ module.exports = grammar({
       field('value', $._value),
     ),
 
-    or_expression: $ => seq(
+    or_expression: $ => prec.left(1, seq(
       field('left', $._expr),
       'or',
       field('right', $._expr),
-    ),
+    )),
 
-    and_expression: $ => seq(
+    and_expression: $ => prec.left(2, seq(
       field('left', $._expr),
       'and',
       field('right', $._expr),
-    ),
+    )),
 
-    not_expression: $ => seq(
+    not_expression: $ => prec(3, seq(
       'not',
       field('operand', $._expr),
-    ),
+    )),
 
     parenthesized: $ => seq('(', $._expr, ')'),
 
