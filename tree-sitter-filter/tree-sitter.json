@@ -1,0 +1,12 @@
+{
+  "grammars": [
+    {
+      "name": "filter",
+      "camelcase": "Filter",
+      "scope": "source.filter",
+      "path": ".",
+      "file-types": ["filter"],
+      "highlights": "queries/highlights.scm"
+    }
+  ]
+}
