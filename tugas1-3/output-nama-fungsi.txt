@@ -1,0 +1,3 @@
+@nama  baris 7: tambah
+@nama  baris 14: sapa
+@nama  baris 21: baca_file
