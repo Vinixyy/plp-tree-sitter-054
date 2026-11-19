@@ -113,3 +113,16 @@ status in ("open", "pending", "closed")
       (string)
       (string)
       (string))))
+
+==================
+contains
+==================
+
+title contains "invoice"
+
+---
+
+(query
+  (contains_expression
+    field: (identifier)
+    value: (string)))
