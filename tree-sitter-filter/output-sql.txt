@@ -1,0 +1,2 @@
+WHERE (status = ? AND ((priority >= ? OR owner = ?)))
+PARAMS ['open', 2, 'budi']
