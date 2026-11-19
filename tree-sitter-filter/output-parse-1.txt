@@ -1,0 +1,4 @@
+(query
+  (comparison
+    (identifier)
+    (string)))
