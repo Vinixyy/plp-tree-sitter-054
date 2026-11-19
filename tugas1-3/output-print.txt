@@ -1,0 +1,4 @@
+@fn  baris 10: print
+@fn  baris 17: print
+@args  baris 10: ("tambah:", hasil)
+@args  baris 17: (pesan)
