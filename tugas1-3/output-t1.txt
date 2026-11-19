@@ -3,4 +3,4 @@
 === potongan/if_else.py ===
 (module (expression_statement (assignment left: (identifier) right: (integer))) (if_statement condition: (comparison_operator (identifier) (integer)) consequence: (block (expression_statement (assignment left: (identifier) right: (string (string_start) (string_content) (string_end))))) alternative: (else_clause body: (block (expression_statement (assignment left: (identifier) right: (string (string_start) (string_content) (string_end))))))))
 === potongan/kelas.py ===
-(module)
+(module (class_definition name: (identifier) body: (block (function_definition name: (identifier) parameters: (parameters (identifier) (identifier)) body: (block (expression_statement (assignment left: (attribute object: (identifier) attribute: (identifier)) right: (identifier))))) (function_definition name: (identifier) parameters: (parameters (identifier)) body: (block (return_statement (string (string_start) (string_content) (interpolation expression: (attribute object: (identifier) attribute: (identifier))) (string_end))))))))
