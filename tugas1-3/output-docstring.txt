@@ -1,0 +1,3 @@
+@docstring  baris 8: """Menjumlahkan dua angka."""
+@docstring  baris 22: """Membaca isi file."""
+@docstring  baris 15: """Menyapa seseorang."""
