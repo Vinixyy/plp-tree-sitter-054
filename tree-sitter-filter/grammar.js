@@ -4,8 +4,16 @@ module.exports = grammar({
 
   rules: {
     query: $ => $.comparison,
-    comparison: $ => seq($.identifier, '=', $.string),
-    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_.]*/,
+
+    comparison: $ => seq(
+      $.identifier,
+      choice('=', '!=', '>', '<', '>=', '<='),
+      $._value,
+    ),
+
+    _value: $ => choice($.string, $.number),
     string: $ => /"[^"]*"/,
+    number: $ => /\d+(\.\d+)?/,
+    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_.]*/,
   }
 });
