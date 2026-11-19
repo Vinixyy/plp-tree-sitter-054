@@ -1,0 +1,10 @@
+=== anak dari function_definition ===
+def                       anonim   field=None
+identifier                bernama  field=name
+parameters                bernama  field=parameters
+:                         anonim   field=None
+block                     bernama  field=body
+=== isi parameters ===
+(                         anonim  
+identifier                bernama 
+)                         anonim  
