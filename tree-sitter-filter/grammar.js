@@ -22,24 +22,24 @@ module.exports = grammar({
       field('value', $._value),
     ),
 
-    and_expression: $ => prec.left(2, seq(
-      field('left', $._expr),
-      'and',
-      field('right', $._expr),
-    )),
-
     or_expression: $ => prec.left(1, seq(
       field('left', $._expr),
       'or',
       field('right', $._expr),
     )),
 
-    parenthesized: $ => seq('(', $._expr, ')'),
+    and_expression: $ => prec.left(2, seq(
+      field('left', $._expr),
+      'and',
+      field('right', $._expr),
+    )),
 
     not_expression: $ => prec(3, seq(
       'not',
       field('operand', $._expr),
     )),
+
+    parenthesized: $ => seq('(', $._expr, ')'),
 
     in_expression: $ => seq(
       field('field', $.identifier),
@@ -47,17 +47,17 @@ module.exports = grammar({
       field('values', $.value_list),
     ),
 
+    contains_expression: $ => seq(
+      field('field', $.identifier),
+      'contains',
+      field('value', $.string),
+    ),
+
     value_list: $ => seq(
       '(',
       $._value,
       repeat(seq(',', $._value)),
       ')',
-    ),
-
-    contains_expression: $ => seq(
-      field('field', $.identifier),
-      'contains',
-      field('value', $.string),
     ),
 
     _value: $ => choice($.string, $.number, $.boolean),
