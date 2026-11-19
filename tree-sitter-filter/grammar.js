@@ -12,6 +12,7 @@ module.exports = grammar({
       $.or_expression,
       $.not_expression,
       $.parenthesized,
+      $.in_expression,
     ),
 
     comparison: $ => seq(
@@ -38,6 +39,19 @@ module.exports = grammar({
       'not',
       field('operand', $._expr),
     )),
+
+    in_expression: $ => seq(
+      field('field', $.identifier),
+      'in',
+      field('values', $.value_list),
+    ),
+
+    value_list: $ => seq(
+      '(',
+      $._value,
+      repeat(seq(',', $._value)),
+      ')',
+    ),
 
     _value: $ => choice($.string, $.number, $.boolean),
     string: $ => /"[^"]*"/,
