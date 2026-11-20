@@ -1,0 +1,7 @@
+contoh.filter
+  pattern: 5
+    capture: 5 - property, start: (0, 0), end: (0, 6), text: `status`
+  pattern: 1
+    capture: 1 - operator, start: (0, 7), end: (0, 8), text: `=`
+  pattern: 2
+    capture: 2 - string, start: (0, 9), end: (0, 15), text: `"open"`
