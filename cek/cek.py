@@ -34,6 +34,22 @@ def cek_file(path):
                 f"fungsi {nama} ({jumlah} baris)"
             )
 
+    # Fitur 3: file dengan error sintaks
+    if tree.root_node.has_error:
+        node = cari_error(tree.root_node)
+        if node is not None:
+            print(f"{path}:{node.start_point[0] + 1}: error pada {node.type}")
+
+
+def cari_error(node):
+    if node.is_error or node.is_missing:
+        return node
+    for child in node.children:
+        hasil = cari_error(child)
+        if hasil is not None:
+            return hasil
+    return None
+
 
 def iter_py(folder):
     for path in Path(folder).rglob("*.py"):

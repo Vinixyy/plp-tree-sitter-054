@@ -1,2 +1,3 @@
 uji\panjang.py:1: fungsi fungsi_panjang (33 baris)
+uji\rusak.py:1: error pada )
 uji\todo.py:1: # TODO: rapikan validasi
