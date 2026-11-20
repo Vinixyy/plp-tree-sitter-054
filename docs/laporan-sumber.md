@@ -43,3 +43,21 @@ Generator `sql_where.py` mengubah pohon menjadi klausa `WHERE` ber-parameter (pl
 ## 6. Tugas 6 — mini proyek `cek.py`
 
 `cek/cek.py` memindai tiga hal: komentar TODO/FIXME (regex batas kata), fungsi lebih dari 30 baris, dan file dengan error sintaks. Hasil pada folder uji ada di `cek/output-uji.txt`; hasil pada repo nyata (`itsdangerous`, 15 file `.py`) ada di `cek/output-repo.txt` dengan 7 temuan. Verifikasi manual dua file memakai `grep`, modul `ast`, dan `py_compile` tercatat di `cek/verifikasi-manual.md` — seluruhnya cocok. Fitur pengayaan JavaScript ada di `cek/cek_js.py`.
+
+## 7. Kendala dan solusi
+
+1. **Unresolved conflict saat menambah `or` (T4-5).** Penyebabnya `or_expression` dan `and_expression` sama-sama rekursif tanpa prioritas. Solusinya `prec.left(1, ...)` untuk `or` dan `prec.left(2, ...)` untuk `and`. Bukti: `tree-sitter-filter/output-conflict.txt` dan `output-conflict-tanpa-prec.txt`; setelah diperbaiki, 8/8 tes lulus.
+2. **`tree-sitter.json` ditolak CLI (T5-1).** CLI 0.25.2 gagal dengan `missing field metadata`; CLI 0.24.7 bisa generate tetapi parse dari folder lain menghasilkan `No language found`. Solusinya memakai CLI 0.24.7 dan menambah `"metadata": {"version": "0.1.0"}`.
+3. **False positive `TODOLIST` (T6-1).** Pola `(#match? @c "TODO|FIXME")` ikut mencocokkan `TODOLIST`. Solusinya menyaring komentar dengan regex `\b(TODO|FIXME)\b` di Python.
+4. **`filter.so` tidak bisa dimuat Python (T4-17).** GCC MinGW menghasilkan DLL 32-bit, sedangkan Python 64-bit memberi `OSError: WinError 193`. Solusinya mengompilasi dengan MSVC x64 lewat `vcvars64.bat`.
+5. **Flag `--layout` tidak ada (T5-5).** CLI 0.24.7 hanya menerima `--html`, sehingga perintah panduan disesuaikan; dokumen HTML tetap dihasilkan.
+
+## 8. Catatan penggunaan AI
+
+Ringkasan dari `docs/catatan-ai.md` (tiga entri lengkap):
+
+- **Tugas 3:** AI mengusulkan field `module` pada query import; ternyata invalid. Bukti dari penjelajah pohon menunjukkan `module_name`, lalu query diperbaiki.
+- **Tugas 6:** AI menganggap `(#match? @c "TODO|FIXME")` sudah cukup. Uji dengan `# TODOLIST` membuktikan false positive; diperbaiki dengan batas kata `\b...\b`.
+- **Tugas 4/5:** AI mengasumsikan contoh `tree-sitter.json` dari panduan kompatibel dengan CLI terbaru. Pesan error `missing field metadata` dan `No language found` menjadi bukti; diperbaiki dengan versi CLI 0.24.7 + `metadata.version`.
+
+Pelajarannya: setiap hasil AI diverifikasi dengan menjalankan perintah dan menyertakan kasus negatif, bukan diterima begitu saja dari bentuk kode yang tampak masuk akal.
