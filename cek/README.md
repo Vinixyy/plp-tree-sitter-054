@@ -58,3 +58,22 @@ Format setiap baris: `file:baris: pesan`. Tiga pesan yang mungkin muncul:
 - Folder `venv`, `.venv`, `.git`, `node_modules`, dan `__pycache__` dilewati saat menjelajah.
 - Hanya file `.py` yang dipindai.
 - Saat melaporkan error, yang dicetak adalah `node.type`; untuk node `MISSING` ini bisa berupa token yang hilang, misalnya `)` pada `cek/uji/rusak.py`.
+
+## Fitur pengayaan: JavaScript
+
+`cek_js.py` adalah versi pengayaan untuk file `.js` (pemindaian `.py` tetap memakai `cek.py`). Butuh grammar tambahan:
+
+```bash
+python -m pip install tree-sitter-javascript==0.25.0
+cd cek
+python cek_js.py uji/
+```
+
+Contoh output dengan `cek/uji/todo.js`:
+
+```
+uji\todo.js:1: // TODO: rapikan validasi
+uji\todo.js:6: fungsi panjang (36 baris)
+```
+
+Perbedaan dari `cek.py`: query fungsi memakai `function_declaration` (bukan `function_definition`), folder yang dilewati adalah `node_modules`, `.git`, `dist`, `build`, dan pemeriksaan error hanya mencetak `file mengandung error` tanpa mencari node `ERROR`/`MISSING` secara rekursif.

@@ -6,7 +6,7 @@ Versi yang benar-benar dipakai saat praktikum (Windows, bukan WSL):
 - Python: 3.14.5
 - tree-sitter CLI: 0.24.7 (`5e8760bf462ce7b19b3d2396d5b7860f3906a297`), dipasang lokal di folder temp
 - Python binding: tree-sitter 0.25.2
-- Grammar: tree-sitter-python 0.25.0; tree-sitter-javascript tidak dipasang
+- Grammar: tree-sitter-python 0.25.0; tree-sitter-javascript 0.25.0 (fitur pengayaan `cek_js.py`, dipasang di T6-8)
 - GCC: MinGW.org GCC-6.3.0-1 (32-bit); untuk `filter.so` dipakai MSVC 14.44.35207 x64 karena Python 64-bit tidak bisa memuat DLL 32-bit
 - Node/npm: v24.16.0 / 11.13.0
 
